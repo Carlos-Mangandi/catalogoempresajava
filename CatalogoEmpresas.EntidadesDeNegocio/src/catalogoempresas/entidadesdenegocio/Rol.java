@@ -1,4 +1,3 @@
-
 package catalogoempresas.entidadesdenegocio;
 
 import java.util.ArrayList;
