@@ -8,8 +8,7 @@ public class Rol {
     private int top_aux;
     private ArrayList<Usuario> usuarios;
 
-    public Rol() {
-    }
+    public Rol() {}
 
     public Rol(int id, String nombre, int top_aux, ArrayList<Usuario> usuarios) {
         this.id = id;

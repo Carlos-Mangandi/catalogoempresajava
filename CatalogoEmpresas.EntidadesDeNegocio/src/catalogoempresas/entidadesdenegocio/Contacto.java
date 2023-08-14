@@ -11,8 +11,7 @@ public class Contacto {
     private int top_aux;
     private ArrayList<Empresa> empresas;
 
-    public Contacto() {
-    }
+    public Contacto() {}
 
     public Contacto(int id, String nombre, String email, String telefono, String celular, int top_aux, ArrayList<Empresa> empresas) {
         this.id = id;

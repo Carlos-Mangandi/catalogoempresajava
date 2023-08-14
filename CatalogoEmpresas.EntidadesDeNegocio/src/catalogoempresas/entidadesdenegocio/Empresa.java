@@ -9,9 +9,8 @@ public class Empresa {
     private String departamento;
     private int top_aux;
     private Contacto contacto;
-
-    public Empresa() {
-    }
+    
+    public Empresa() {}
 
     public Empresa(int id, int idContacto, String nombre, String rubro, String categoria, String departamento, int top_aux, Contacto contacto) {
         this.id = id;
