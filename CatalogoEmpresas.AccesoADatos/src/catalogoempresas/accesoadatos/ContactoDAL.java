@@ -40,11 +40,13 @@ public class ContactoDAL {
                 ps.setString(4, pContacto.getCelular());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return result;
@@ -63,11 +65,13 @@ public class ContactoDAL {
                 ps.setInt(5, pContacto.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return result;
@@ -82,11 +86,13 @@ public class ContactoDAL {
                 ps.setInt(1, pContacto.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return result;
@@ -114,7 +120,8 @@ public class ContactoDAL {
                 pContactos.add(contacto);
             }
             resultSet.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
     }
@@ -129,7 +136,8 @@ public class ContactoDAL {
                 ps.setInt(1, pContacto.getId());
                 obtenerDatos(ps, contactos);
                 ps.close();
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -151,7 +159,8 @@ public class ContactoDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 obtenerDatos(ps, contactos);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -216,7 +225,8 @@ public class ContactoDAL {
                 querySelect(pContacto, utilQuery);
                 obtenerDatos(ps, contactos);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();

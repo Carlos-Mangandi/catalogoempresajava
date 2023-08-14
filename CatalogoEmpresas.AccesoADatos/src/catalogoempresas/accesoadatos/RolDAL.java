@@ -7,8 +7,8 @@ import catalogoempresas.entidadesdenegocio.*;
 
 
 public class RolDAL {
-    static String obtenerCampos() {
-        return "r.Id, r.Nombre";
+    static String obtenerCampos() { //los static no necesitan metodos ;  aqui nos muestra una lista de objetos
+        return "r.Id, r.Nombre"; // alias r. " es para abreviar el nombre de una tabla "
     }
     
     private static String obtenerSelect(Rol pRol) {
@@ -29,40 +29,44 @@ public class RolDAL {
         return sql;
     }
     
-    public static int crear(Rol pRol) throws Exception {
+    public static int crear(Rol pRol) throws Exception { //vamos hacer un INSERT
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { 
-            sql = "INSERT INTO Rol(Nombre) VALUES(?)";
-            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
-                ps.setString(1, pRol.getNombre());
+            sql = "INSERT INTO Rol(Nombre) VALUES(?)"; // el ? es para expresar que ahi hay un parametro
+            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { 
+                ps.setString(1, pRol.getNombre());// 1 es de adonde vamos a sacar la consulta
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
-        return result;
+        return result; // nosotros capturamos lo que nos devuelve la BD; si fue correcta nos mandará 1 de lo contrario será 0
     }
     
     public static int modificar(Rol pRol) throws Exception {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) {
-            sql = "UPDATE Rol SET Nombre=? WHERE Id=?";
+            sql = "UPDATE Rol SET Nombre=? WHERE Id=?"; // aca hay 2 parámetros 
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 ps.setString(1, pRol.getNombre());
                 ps.setInt(2, pRol.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return result;
@@ -77,17 +81,20 @@ public class RolDAL {
                 ps.setInt(1, pRol.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return result;
     } 
     
-    static int asignarDatosResultSet(Rol pRol, ResultSet pResultSet, int pIndex) throws Exception {
+    static int asignarDatosResultSet(Rol pRol, ResultSet pResultSet, int pIndex) throws Exception { // que es un result set = proporciona varios métodos para obtener  
+                                  // una especie de copia que queda almacenada en la memoria       //los datos de columna correspondientes a un fila
         pIndex++;
         pRol.setId(pResultSet.getInt(pIndex));
         pIndex++;
@@ -97,13 +104,14 @@ public class RolDAL {
     
     private static void obtenerDatos(PreparedStatement pPS, ArrayList<Rol> pRoles) throws Exception {
         try (ResultSet resultSet = ComunDB.obtenerResultSet(pPS);) {
-            while (resultSet.next()) {
+            while (resultSet.next()) { // mientras en el result set siguiente
                 Rol rol = new Rol(); 
                 asignarDatosResultSet(rol, resultSet, 0);
                 pRoles.add(rol);
             }
             resultSet.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
     }
@@ -117,8 +125,9 @@ public class RolDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 ps.setInt(1, pRol.getId());
                 obtenerDatos(ps, roles);
-                ps.close();
-            } catch (SQLException ex) {
+                ps.close(); // cierra la conexion
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -142,7 +151,8 @@ public class RolDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 obtenerDatos(ps, roles);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -164,9 +174,9 @@ public class RolDAL {
         }
 
         if (pRol.getNombre() != null && pRol.getNombre().trim().isEmpty() == false) {
-            pUtilQuery.AgregarNumWhere(" r.Nombre LIKE ? "); 
+            pUtilQuery.AgregarNumWhere(" r.Nombre LIKE ? "); // en una cadena no se puede poner " = " sino que el operadors " LIKE"    
             if (statement != null) {
-                statement.setString(pUtilQuery.getNumWhere(), "%" + pRol.getNombre() + "%"); 
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pRol.getNombre() + "%"); // el " % " puede llevar cualquier cosa 
             }
         }
     }
@@ -187,7 +197,8 @@ public class RolDAL {
                 querySelect(pRol, utilQuery);
                 obtenerDatos(ps, roles);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();

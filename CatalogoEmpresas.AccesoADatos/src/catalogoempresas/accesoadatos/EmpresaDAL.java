@@ -42,11 +42,13 @@ public class EmpresaDAL {
                 ps.setString(5, pEmpresa.getDepartamento());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         
@@ -67,11 +69,13 @@ public class EmpresaDAL {
                 ps.setInt(6, pEmpresa.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             throw ex;
         }
         
@@ -87,7 +91,8 @@ public class EmpresaDAL {
                 ps.setInt(1, pEmpresa.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -122,14 +127,15 @@ public class EmpresaDAL {
                 pEmpresas.add(empresa);
             }
             resultSet.close();
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             throw ex;
         }
     }
     
     private static void obtenerDatosIncluirContacto(PreparedStatement pPS, ArrayList<Empresa> pEmpresas) throws Exception {
         try (ResultSet resultSet = ComunDB.obtenerResultSet(pPS);) {
-            HashMap<Integer, Contacto> contactoMap = new HashMap(); 
+            HashMap<Integer, Contacto> contactoMap = new HashMap(); // 
             while (resultSet.next()) {
                 Empresa empresa = new Empresa();
                 int index = asignarDatosResultSet(empresa, resultSet, 0);
@@ -138,13 +144,15 @@ public class EmpresaDAL {
                     ContactoDAL.asignarDatosResultSet(contacto, resultSet, index);
                     contactoMap.put(contacto.getId(), contacto); 
                     empresa.setContacto(contacto); 
-                } else {
+                } 
+                else {
                     empresa.setContacto(contactoMap.get(empresa.getIdContacto())); 
                 }
                 pEmpresas.add(empresa); 
             }
             resultSet.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex; 
         }
     }
@@ -159,7 +167,8 @@ public class EmpresaDAL {
                 ps.setInt(1, pEmpresa.getId());
                 obtenerDatos(ps, empresas);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -181,7 +190,8 @@ public class EmpresaDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 obtenerDatos(ps, empresas);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex; 
             }
             conn.close();
@@ -253,7 +263,8 @@ public class EmpresaDAL {
                 querySelect(pEmpresa, utilQuery);
                 obtenerDatos(ps, empresas);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -288,11 +299,13 @@ public class EmpresaDAL {
                 querySelect(pEmpresa, utilQuery);
                 obtenerDatosIncluirContacto(ps, empresas);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return empresas;

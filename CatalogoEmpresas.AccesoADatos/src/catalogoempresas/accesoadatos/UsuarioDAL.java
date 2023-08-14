@@ -18,7 +18,8 @@ public class UsuarioDAL {
                         .substring(1, 3));
             }
             return sb.toString();
-        } catch (java.security.NoSuchAlgorithmException ex) {
+        } 
+        catch (java.security.NoSuchAlgorithmException ex) {
             throw ex;
         }
     }
@@ -56,7 +57,8 @@ public class UsuarioDAL {
                 ps.setString(2, pUsuario.getLogin());
                 obtenerDatos(ps, usuarios);
                 ps.close();
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -90,7 +92,8 @@ public class UsuarioDAL {
                     ps.setDate(7, java.sql.Date.valueOf(LocalDate.now()));
                     result = ps.executeUpdate();
                     ps.close();
-                } catch (SQLException ex) {
+                } 
+                catch (SQLException ex) {
                     throw ex;
                 }
                 conn.close();
@@ -98,7 +101,8 @@ public class UsuarioDAL {
             catch (SQLException ex) {
                 throw ex;
             }
-        } else {
+        } 
+        else {
             result = 0;
             throw new RuntimeException("Login ya existe");
         }
@@ -121,7 +125,8 @@ public class UsuarioDAL {
                     ps.setInt(6, pUsuario.getId());
                     result = ps.executeUpdate();
                     ps.close();
-                } catch (SQLException ex) {
+                } 
+                catch (SQLException ex) {
                     throw ex;
                 }
                 conn.close();
@@ -129,7 +134,8 @@ public class UsuarioDAL {
             catch (SQLException ex) {
                 throw ex;
             }
-        } else {
+        } 
+        else {
             result = 0;
             throw new RuntimeException("Login ya existe");
         }
@@ -145,7 +151,8 @@ public class UsuarioDAL {
                 ps.setInt(1, pUsuario.getId());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -182,7 +189,8 @@ public class UsuarioDAL {
                 pUsuarios.add(usuario);
             }
             resultSet.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
     }
@@ -198,13 +206,15 @@ public class UsuarioDAL {
                     RolDAL.asignarDatosResultSet(rol, resultSet, index);
                     rolMap.put(rol.getId(), rol); 
                     usuario.setRol(rol); 
-                } else {
+                } 
+                else {
                     usuario.setRol(rolMap.get(usuario.getIdRol())); 
                 }
                 pUsuarios.add(usuario); 
             }
             resultSet.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex; 
         }
     }
@@ -219,7 +229,8 @@ public class UsuarioDAL {
                 ps.setInt(1, pUsuario.getId());
                 obtenerDatos(ps, usuarios);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -242,7 +253,8 @@ public class UsuarioDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 obtenerDatos(ps, usuarios);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex; 
             }
             conn.close();
@@ -314,7 +326,8 @@ public class UsuarioDAL {
                 querySelect(pUsuario, utilQuery);
                 obtenerDatos(ps, usuarios);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -338,7 +351,8 @@ public class UsuarioDAL {
                 ps.setByte(3, Usuario.EstatusUsuario.ACTIVO);
                 obtenerDatos(ps, usuarios);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
@@ -368,7 +382,8 @@ public class UsuarioDAL {
                     ps.setInt(2, pUsuario.getId());
                     result = ps.executeUpdate();
                     ps.close();
-                } catch (SQLException ex) {
+                } 
+                catch (SQLException ex) {
                     throw ex;
                 }
                 conn.close();
@@ -376,7 +391,8 @@ public class UsuarioDAL {
             catch (SQLException ex) {
                 throw ex;
             }
-        } else {
+        } 
+        else {
             result = 0;
             throw new RuntimeException("El password actual es incorrecto");
         }
@@ -407,11 +423,13 @@ public class UsuarioDAL {
                 querySelect(pUsuario, utilQuery);
                 obtenerDatosIncluirRol(ps, usuarios);
                 ps.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 throw ex;
             }
             conn.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             throw ex;
         }
         return usuarios;
