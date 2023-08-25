@@ -1,10 +1,5 @@
-<%-- 
-    Document   : footerBody
-    Created on : 17 ago 2023, 11:23:10
-    Author     : MINEDUCYT
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!<!-- comment 
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,4 +9,13 @@
     <body>
         <h1>Hello World!</h1>
     </body>
-</html>
+</html>-->
+
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('select').formSelect();
+             M.updateTextFields();
+        });
+    </script>
