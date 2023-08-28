@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="catalogoempresas.entidadesdenegocio.Usuario"%>
 <%@page import="catalogoempresas.entidadesdenegocio.Rol"%>
@@ -66,7 +67,7 @@
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
-                        <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
+                        <button type="submit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
                         <a href="Usuario?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
                     </div>
                 </div>

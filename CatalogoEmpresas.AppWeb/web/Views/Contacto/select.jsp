@@ -1,17 +1,16 @@
-<%-- 
-    Document   : select
-    Created on : 17 ago 2023, 11:06:04
-    Author     : MINEDUCYT
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page import="catalogoempresas.entidadesdenegocio.Contacto"%>
+<%@page import="catalogoempresas.accesoadatos.ContactoDAL"%>
+<%@page import="java.util.ArrayList"%>
+
+<% ArrayList<Contacto> contactos = ContactoDAL.obtenerTodos();
+    int id = Integer.parseInt(request.getParameter("id"));
+%>
+<select id="slContacto" name="idContacto">
+    <option <%=(id == 0) ? "selected" : ""%>  value="0">SELECCIONAR</option>
+    <% for (Contacto contacto : contactos) {%>
+        <option <%=(id == contacto.getId()) ? "selected" : "" %>  value="<%=contacto.getId()%>"><%= contacto.getNombre()%></option>
+    <%}%>
+</select>
+<label for="idContacto">Contacto</label>
