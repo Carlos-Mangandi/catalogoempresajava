@@ -81,7 +81,7 @@ public class UsuarioDAL {
         boolean existe = existeLogin(pUsuario);
         if (existe == false) {
             try (Connection conn = ComunDB.obtenerConexion();) {
-                sql = "INSERT INTO Usuario(IdRol,Nombre,Apellido,Login,Pass,Estatus,FechaRegistro) VALUES(?,?,?,?,?,?,?)";
+                sql = "INSERT INTO Usuario(IdRol,Nombre,Apellido,Login,Password,Estatus,FechaRegistro) VALUES(?,?,?,?,?,?,?)";
                 try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                     ps.setInt(1, pUsuario.getIdRol());
                     ps.setString(2, pUsuario.getNombre());

@@ -13,6 +13,7 @@ public class ComunDB {
     static int TIPODB = TipoDB.SQLSERVER;
     
     static String connectionUrlSqlServer = "jdbc:sqlserver://localhost;"
+            + "instanceName=SQLEXPRESS;"
             + "database=CatalogoEmpresasDB;"
             + "user=JavaUser;"
             + "password=#Modulo16;"
